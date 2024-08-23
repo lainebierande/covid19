@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Visuals</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; 
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #003366; 
+            text-align: center; 
+            margin-bottom: 30px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .visual-section {
+            background-color: #e0f7fa; 
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .visual-section h2 {
+            margin-top: 0;
+        }
+
+        .back-button {
+            margin-bottom: 20px;
+        }
+
+        .back-button button {
+            background-color: #18045f; 
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <h1>COVID-19 Visuals</h1>
+
+    <!-- Back to Data Button -->
+    <div class="back-button">
+        <button type="button" onclick="location.href='/'">Back</button>
+    </div>
+<!-- Plot visuals -->
+    <div class="container">
+
+        <div class="visual-section">
+            {{ world_map|safe }}
+        </div>
+
+        <div class="visual-section">
+            {{ clustering_graph|safe }}
+        </div>
+
+        <div class="visual-section">
+            {{ graph4|safe }}
+        </div>
+
+        <div class="visual-section">
+            {{ plot_2021|safe }}
+        </div>
+
+        <div class="visual-section">
+            {{ plot_all_countries_2021|safe }}
+        </div>
+
+        <div class="visual-section">
+            {{ plot_latvia_2021|safe }}
+        </div>
+    </div>
+
+    <!-- JavaScript fails -->
+    <script src="/static/visuals.js"></script>
+</body>
+</html>

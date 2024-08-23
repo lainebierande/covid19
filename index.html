@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COVID-19 Data</title>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #003366; 
+            text-align: center; 
+            margin-bottom: 30px;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        .section {
+            background-color: #d9d9d9; 
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+
+        .section h2 {
+            margin-top: 0;
+        }
+
+        .results {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .comment-section {
+            background-color: #e0f7fa; 
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .line {
+            border-top: 2px solid #b3b3b3;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>COVID-19 Data</h1>
+    
+    <div class="container">
+        <!-- Database and Table Selection Section -->
+        <div class="section">
+            <label for="database">Select Database:</label>
+            <select id="database" name="database">
+                <option value="GLOBAL">GLOBAL</option>
+                <option value="COVID_DATA">COVID_DATA</option>
+            </select>
+            
+            <label for="table">Select Table:</label>
+            <select id="table" name="table">
+                <option value="UNITED_GLOBAL_EXTENDED">UNITED_GLOBAL_EXTENDED</option>
+                <option value="SUMMARY">SUMMARY</option>
+                <option value="BYDATE">BYDATE</option>
+            </select>
+            
+            <button type="button" onclick="fetchData()">OVERVIEW</button>
+            
+            <h2>Results</h2>
+            <div class="results" id="overview-results"></div>
+        </div>
+
+        <div class="line"></div>
+
+        <!-- Data Query Section -->
+        <div class="section">
+            <label for="country">Select Country:</label>
+            <input type="text" id="country" name="country">
+            
+            <label for="date">Select Month:</label>
+            <input type="month" id="date" name="date" min="2021-01" max="2021-12">
+            
+            <button type="button" onclick="fetchTotalCases()">Total Cases</button>
+            <button type="button" onclick="fetchPopulation()">Population</button>
+            <button type="button" onclick="fetchVaccinated()">Vaccinated</button>
+            <button type="button" onclick="fetchUnvaccinated()">Unvaccinated</button>
+            <button type="button" onclick="fetchTotalTests()">Total Tests</button>
+            <button type="button" onclick="fetchTotalDeath()">Total Death</button>
+
+            <h2>Results</h2>
+            <div class="results" id="results" onclick="handleResultClick(event)"></div>
+        </div>
+
+        <div class="line"></div>
+<!-- Comment Section -->
+<div class="section comment-section">
+    <h2>Add Comment</h2>
+    <div>
+        <label for="datapoint-id">Datapoint ID:</label>
+        <input type="text" id="datapoint-id" name="datapoint-id">
+        
+        <label for="user">User:</label>
+        <input type="text" id="user" name="user">
+        
+        <label for="comment">Comment:</label>
+        <input type="text" id="comment" name="comment">
+        
+        <button type="button" onclick="addComment()">Add Comment</button>
+    </div>
+
+    <h2>Get Comments</h2>
+    <div>
+        <label for="get-datapoint-id">Datapoint ID:</label>
+        <input type="text" id="get-datapoint-id" name="get-datapoint-id">
+        
+        <button type="button" onclick="getComments()">Get Comments</button>
+    </div>
+</div>
+            <h2>Comments</h2>
+            <div id="comments-section"></div>
+
+            <!-- Button to Navigate to Data Visuals -->
+            <div style="margin-top: 20px;">
+                <button type="button" onclick="location.href='/visual'">Data Visuals</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript File -->
+    <script src="/static/script.js"></script>
+</body>
+</html>
